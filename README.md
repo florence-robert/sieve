@@ -1,46 +1,50 @@
-# Getting Started with Create React App
+# Sieve Challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The goal of this challenge is to create a simple web app consisting of a frontend using React and a node backend using a framework of choice.
 
-## Available Scripts
+## Getting Started
 
-In the project directory, you can run:
+- `npm install`
+- `npm run dev`
 
-### `npm start`
+### Main Dependencies
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Express**
+- **React**
+- **SWR** - Data fetching hook
+- **Zod**
+- **usehooks-ts** - exclusively used to get a debounce hook
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Notable Dev Dependencies
 
-### `npm test`
+- **Tailwind CSS + Daisy UI**: TW + Daisy are leveraged for their SSR capabilities. These would resolve issues related to FOUC and FART
+- **TypeScript**
+- **Vite**
+- **Testing Libraries**: Includes `@testing-library/react`, `@testing-library/jest-dom`, `fast-check`, `jsdom`, and `supertest` for testing both client and server components.
+- **ESLint**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Server
 
-### `npm run build`
+- Located in the `server` directory.
+- Built with Express for handling API requests.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Client
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Source code is located in the `src` and `client` directories.
+- Utilizes React for UI components.
+- Tailwind CSS for styling.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Testing
 
-### `npm run eject`
+- `npm run test`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Possible improvements
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Here's a non-exhaustive list of improvements that could be made to this application with more time.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Add caching on the server to avoid re-computing the prime numbers
+- Add service discovery to allow distributed client/server.
+- Add more styling to provide a more engaging user experience
+- Pre-compute prime numbers to get an even faster server response time.
+- Add client-side caching _and_ memoization
+- Add some more useful tests on the client. Some of them are kind of unhelpful

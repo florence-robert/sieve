@@ -1,25 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useDebounce } from "usehooks-ts";
+import "./App.css";
+import { usePrimes } from "./hooks/use-primes.hook";
+import { Errors } from "./errors.component";
+import { MedianPrimes } from "./median-primes.component";
 
 function App() {
+  const [value, setValue] = React.useState(0);
+  const debouncedValue = useDebounce<number>(value, 300);
+  const { primes, isLoading, errors } = usePrimes(debouncedValue);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(Number(event.target.value));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main id="main" className="grow hero">
+      <article className="hero-content text-left">
+        <section>
+          <h1 className="mb-4">Median Prime Numbers</h1>
+          <input
+            type="number"
+            min="1"
+            max="10_000_000"
+            placeholder="Enter a number"
+            className="mb-4 input input-bordered input-primary w-full"
+            onChange={handleChange}
+          />
+          <MedianPrimes medians={primes} />
+          <Errors errors={errors} />
+          {isLoading && <span className="loading loading-spinner loading-md" />}
+        </section>
+      </article>
+    </main>
   );
 }
 
